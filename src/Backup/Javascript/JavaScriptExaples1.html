@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="box1"/>
+    <input id="box2"/>
+    <button onclick="addItems()">Add the Items</button>
+    <h1 id="result">Result</h1>
+
+    <button id="btn">Click Event lisner</button>
+
+    <button onclick="submit()">Submit for De-bouncing</button>
+
+    <p id="sortitem">Sorted</p>
+
+</body>
+<script>
+    let box1 = document.getElementById('box1');
+    let box2 = document.getElementById('box2');
+    let result = document.getElementById('result');
+
+function addItems() {
+    let box1Value = Number(box1.value);
+    let box2Value = Number(box2.value);
+    let total = box1Value + box2Value;
+    result.textContent = total;
+}
+
+//Sort the Array of Object
+let arrayObject = [
+    {fname: 'Steven', lname: 'Hancock', score: 90},
+    {fname: 'Lyneete', lname: 'Jorsens', score: 100},
+    {fname: 'Andrew', lname: 'Wilson', score: 71},
+    {fname: 'Annika', lname: 'Turnur', score: 82}
+ ];
+arrayObject.sort((a,b) => {
+    if(a.lname.toLowerCase() < b.lname.toLowerCase()) {
+        return -1;
+    }
+    if(a.lname.toLowerCase() > b.lname.toLowerCase()) {
+        return 1;
+    }
+    return 0;
+});
+
+arrayObject.sort((a,b) => {
+    return a.score - b.score;
+})
+console.log(arrayObject);
+
+//Sort the Array
+const fruits = ["Banana", "Orange", "Apple", "Mango", 'Lemen'];
+ // fruits.sort();
+const sortitem = fruits.toSorted();
+document.getElementById('sortitem').innerHTML = sortitem;
+console.log(fruits);
+
+const numbers = [74, 18, 10, 5, 57, 24, 105];
+ // numbers.sort();
+numbers.sort((x,y) => x - y);
+console.log(numbers);
+
+//De-bouncing
+const debounce = (fun, delay) => {
+    let timeout;
+    if(timeout) {
+        clearTimeout(timeout);
+    }
+    return function() {
+        setTimeout(() => {
+            fun();
+        }, delay)
+    }
+}
+const print = () => {
+    console.log("Cliclked");
+}
+const submit = debounce(print, 2000);
+
+//Chain new Promises
+Promise.resolve("Done11")
+    .then(val => {
+        console.log(val);
+        return new Promise(resolve => {
+            setTimeout(() => resolve("Done22"), 1000);
+        })
+    })
+    .then(val => {
+        console.log(val);
+    })
+
+//Chain Promises
+Promise.resolve("Done1")
+    .then(val => {
+        console.log("Fist Chain Promise: ", val);
+        return "Done2";
+    }).then(val => {
+        console.log("Second Chain Promise: ", val);
+    });
+
+//What is Promises
+function doAsyncTask() {
+    const promises = new Promise((resolve, reject) => {
+        //resolve, reject
+        console.log("Promise Woorking");
+        resolve();
+    });
+    return promises;
+}
+doAsyncTask();
+
+//Callback Function
+function callbackFunction(num1, num2, callback) {
+    var result = num1 + num2;
+    callback(result);
+}
+function showResult(a) {
+    console.log('New Rusult: ', a);
+}
+callbackFunction(10, 20, showResult);
+
+//Callback Hell - setTimeout
+function callBackHell(callback){
+    setTimeout(() => {
+        console.log("Callback hell called");
+        callback();
+    }, 0);
+
+}
+callBackHell(() => {});
+
+//Constructor Object Oriented pattern
+function person(fname, lname) {
+    this.fname = fname;
+    this.lname = lname;
+}
+var dude = new person('Sarvesh', 'Krishnika');
+console.log('Constructor Object Oriented pattern', dude);
+
+//Shallow Copy:
+const human = {id: 1, name: 'Sarvesh'}
+const humanCopy = Object.assign({}, human, {address: "Blore", pin: 560058});
+console.log(humanCopy);
+
+//Prototype Chain
+const animal = {
+        name: 'Lion',
+        food: 'Meet'
+}
+const newAnimal = Object.create({animal, address: {place: 'Blore'}});
+console.log("Prototype Chain", newAnimal);
+
+//addEventListener
+let btn = document.getElementById('btn');
+btn.addEventListener('click', function() {
+    alert("addEventListener")
+})
+
+//Spread Oparator
+const arryy1 = [1,2,3];
+const arryy2 = [7,8,9];
+const newArray = [...arryy1, 4,5,6, ...arryy2];
+console.log("Spread Oparator Array", newArray);
+
+const objectt1 = {id: 1, name: 'Sarvesh', city: 'Blore'};
+const objectt2 = {street: 'Krishnika', pincode: 560058};
+const newObjectt = {objectt1, ...objectt2}
+console.log("Spread Oparator Object", newObjectt);
+
+function spreadOperator(num1,num2,num3) {
+    return num1 + num2 + num3
+}
+const callSpread = [100,200,300,400]
+const totals = spreadOperator(...callSpread);
+console.log("Spread Oparator Function: ", totals);
+
+//Rest Operator/De-Structuring
+const arryValues = [1,2,3,4];
+const [one,two, ...remaint] = arryValues;
+console.log("Rest Operator Array: ", arryValues);
+
+const objectValues = {id:1, name:'Sarvesh', city: 'Blore'}
+const {id, name, ...remainning} = objectValues;
+console.log("Rest Operator Object: ", objectValues);
+
+function restOperator(a, b, c, ...remain) {
+    console.log('Rest Operator Function', ...remain);
+}
+restOperator(10,20,30,40,50);
+
+//Fat Arrow Function
+const callArrowFuction = () => {
+    console.log("Arrow Function Called");
+}
+setTimeout(callArrowFuction, 1000);
+
+setTimeout(() => {
+    console.log('Called Arrow Function');
+}, 1000);
+
+//For Loop
+for(var i=1; i<=5; i++) {
+    console.log('For Loop Increase: ', i);
+}
+for(var i=5; i>=1; i--) {
+    console.log('For Loop Decreasees: ', i);
+}
+let objCounts = {a:1, b:2, c:3}
+for(let objCount in objCounts) {
+    console.log('For Loop objCounts', objCounts);
+}
+let arrayCounts = [1,2,3];
+for(let arrayCount of arrayCounts) {
+    console.log('For Loop arrayCounts', arrayCounts);
+}
+
+const arraynum = [2,5,8,10,95]
+const stringnum = "SarveshKridhnika"
+for(let i = 0; i < arraynum.length; i++) {
+    console.log('Arraynum: ', arraynum[i]);
+}
+for(let i = 0; i < stringnum.length; i++) {
+    console.log('Stringnum: ', stringnum[i]);
+    
+}
+
+//De-Structuring and Looping
+const nameObject = {fname: "Sarvesh", lname: 'Sathish'}
+const {fname, lname} = nameObject;
+console.log('De-Structuring Object', fname, lname);
+
+const nameArray = ['Orange', 'Apple', 'Grapse'];
+const [x, y, ...remaining] = nameArray;
+console.log('De-Structuring Array: ', x, y, ...remaining);
+
+let [xx,yy, ...rest] = [1,2,3,4,5,6,7,8]
+console.log(xx,yy, rest); // Output is 1, 2 [3, 4, 5, 6, 7, 8]
+
+
+//Function Closure
+function sayHellow(name) {
+    var text = "Hello: " + name
+    return function() {
+        console.log("Function Closure: ", text);
+    }
+}
+const sayHellowAll = sayHellow("Sathishkumar");
+sayHellowAll();
+
+//Closure
+let aaa = 10;
+function outerFunction() {
+    let bbb = 20;
+    function innerFunction() {
+        let ccc = 30;
+        console.log("Closure: ", aaa, bbb, ccc);
+    }
+    innerFunction();
+}
+outerFunction()
+
+//Call - Coma seperet parameter we have to give
+//Appy - Array parameter we have to give
+//Bind - It will requied new function
+const user1 = {
+    name: 'Sarveshveera',
+}
+const user2 = {
+    getName: function(a,b) {
+        console.log("The user name is: ", this.name, a, b);
+    }
+}
+user2.getName.call(user1);
+user2.getName.apply(user1, ['one', 'two']);
+var newBind = user2.getName.bind(user1, ['one', 'Two']);
+newBind();
+
+//Map
+const numMap = [1,2,3,4,5]
+const multiply = numMap.map((num) => {
+    return num * 2
+})
+console.log('Map: ', multiply);
+
+const mapNumbers = [1, 2, 3, 4];
+const squaredNumbers = mapNumbers.map(num => num * num); // [1, 4, 9, 16]
+console.log(squaredNumbers); // Output: [1, 4, 9, 16]
+
+//Filter
+const numFilter = [1,2,3,4,5]
+const moreThenTwo = numFilter.filter((num) => {
+    return num > 2
+})
+console.log('Filter: ', moreThenTwo);
+
+const filterNumbers = [1, 2, 3, 4];
+const mapEvenNumbers = filterNumbers.filter(num => num % 2 === 0); // [2, 4]
+console.log(mapEvenNumbers); // Output: [2, 4]
+
+//Reduce
+const numReduce = [1,2,3,4,5]
+const sumValue = numReduce.reduce((acc, curr) => {
+    return acc + curr
+}, 0)
+console.log('Reduce: ', sumValue);
+
+//Filter
+let users = [
+    {id: 1 , name: 'Steven', mark: 90},
+    {id: 2 , name: 'Lyneete', mark: 100},
+    {id: 3 , name: 'Andrew', mark: 71},
+    {id: 4 , name: 'Annika', mark: 82}
+ ];
+let nameFilter = []
+for(let i=0; i<users.length; i++) {
+    nameFilter.push(users[i].name)
+}
+console.log(nameFilter);
+
+// immutable - Object value change
+let objValue = ['a1','a2','a3'];
+let change = objValue.map(function(objValue) {
+    if(objValue == 'a3') {
+        return 'a4';
+    } else {
+        return objValue;
+    }
+})
+console.log(change);
+console.log(objValue);
+
+// Error Handling
+try {
+    alert('Hello')
+} catch(err) {
+    console.log(err.message);
+}
+
+//Object freeze
+let prfile = {
+    name: "Sarvesh"
+}
+Object.freeze(prfile);
+prfile.name = 'Krishnika';
+console.log('Object freeze :', prfile);
+
+// Change the Oject Value - Instead of Sarvesh, it will change Krishnika
+let prfile = {
+    name: "Sarvesh"
+}
+Object.seal(prfile);
+prfile.name = 'Krishnika';
+console.log('Change the Oject Value: ', prfile);
+
+// Filtering even numbers from an array
+var arr1 = [-200, -163, -26, -4, 0, 7, 76, 9, 13];
+var evens = arr1.filter(x => x % 2 === 0);
+console.log('Evens: ', evens);
+
+var arr2 = [1,2,3,4,5,6,7,8,9,10]
+var evenNumbers = arr2.filter(x => x % 2 === 0);
+console.log('Even Numbers: ', evenNumbers);
+
+// Filtering odd numbers from an array
+var arrodd2 = [1,2,3,4,5,6,7,8,9,10]
+var oddNumbers = arrodd2.filter(x => x % 2 === 1);
+console.log('Odd number: ', oddNumbers);
+
+// Filtering Possitive numbers from an array
+var arrmix1 = [-200, -163, 100, -26, -4, 0, 7, 76];
+var possitive = arrmix1.filter(function(x) {
+    return x > -1
+})
+console.log('Possitive number: ', possitive);
+
+// Filtering Negative numbers from an array
+var arrmix1 = [-200, -163, 100, -26, -4, 0, 7, 76];
+var negative = arrmix1.filter(function(x) {
+    return x < -1
+})
+console.log('Negative number: ', negative);
+
+//Filter()
+const arryy = [1,2,3,4,5,6,7,8,9,10,15,16];
+const arrresult = arryy.filter((a) => {
+    if(a < 10) {
+        return a;        
+    }
+})
+console.log('Arrresult: ', arrresult); // Output is [1, 2, 3, 4, 5, 6, 7, 8, 9] 
+
+//Map
+let arr = [1,2,3,4,5]
+arr.map((value) => {
+    console.log('Map response: ', value);
+})
+
+//Hoisting
+/*Variable Hoisting */
+var a;
+console.log('Variable Hoisting1: ', a); //undefined
+a =5;
+
+console.log('Variable Hoisting2: ', a);  //undefined
+var a = 5
+
+/*Function Hoisting */
+console.log('Function Hoisting1', fun(10));
+function fun(a) {
+    return a;
+}
+
+function fun(a) {
+    return a;
+}
+console.log('Function Hoisting2', fun(10));
+
+</script>
+</html>

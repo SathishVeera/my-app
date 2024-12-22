@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+
+// Local Storage and Session Storage
+// Local Storage
+localStorage.setItem('Name1', "Krishnika");
+console.log(localStorage.getItem('Name1'));
+localStorage.setItem('Name2', 'Sarveshveera');
+localStorage.removeItem('Name2');
+localStorage.clear();
+
+// Session Storage
+sessionStorage.setItem('Value', 'abc');
+sessionStorage.removeItem('Value');
+sessionStorage.setItem('Value1', 'def');
+sessionStorage.clear();
+
+// Others:
+let nums = [1,2,2,3,4,4,5]
+new Set(nums)
+console.log('Remove Duplicate Array', [...new Set(nums)]);
+
+console.log(5 < 6 < 7); //true
+console.log(7 > 6 > 5); //false
+
+const newFun = (...a) => {
+    return a;
+}
+newFun()
+console.log(newFun("Hello")); // Argument passing
+
+console.log(Math.max());        //Output is -Infinity
+console.log(Math.max(1,2,3,4)); //Output is 4 (it will take Max/Latest number)
+
+let numadd = [1,2,3] + [4,5,6];
+console.log(numadd); // Output is 1,2,34,5,6
+
+let numstring = String([...[1,2,3], ...[4,5,6]]);
+console.log(numstring); // Output is 1,2,3,4,5,6
+
+let arry = [1,2,2,3,4,5,6,6]
+result = arry.filter(x => arry.filter(y => y==x).length > 1);
+console.log('Print Duplicate Array: ', result);
+
+let obj = ['Chennai', 'Blore', 'Blore', 'pune', 'Chennai'];
+let resobj = obj.filter((item, index) => obj.indexOf(item) !==index);
+console.log('Print Dulicate Object: ', resobj);
+
+for (var i = 1; i<=5; i++) {
+    console.log('For Lopp sq: ', i);
+}
+
+for (var i = 5; i>=1; i--) {
+    console.log('For Loop Rev sq: ', i);
+}
+
+let arrySplice = [1,2,2,3,4,5,6,6]
+arrySplice.splice(4,0,50);
+console.log('Splice: ', arrySplice);
+
+let pushOject = ['Chennai', 'Pune', 'Blore'];
+pushOject.push("Belgium");
+console.log('PushOject: ', pushOject);
+
+let objectValue = 'Chennai';
+let newobjectValue = objectValue.toLocaleUpperCase();
+console.log('UpperCase: ', newobjectValue);
+
+let arryValue = [1,2,3]
+const {a,b, ...remain} = arryValue;
+console.log('Rest Operatoer: ', arryValue);
+
+let arry1 = [1,2,3,4]
+let arry2 = [5,6,7]
+const newValue = {...arry2, arry1, id:1, name: 'Sarvesh'}
+console.log('Spread Operator: ', newValue);
+
+let strr = "Hello"
+strr[0] = "2"
+console.log(strr[0]); // Output is H
+
+const single = [1,2,3,4,5];
+const dubbled = single.map((item) => {
+    return item * 2
+})
+console.log(dubbled); // Output is 2, 4, 6, 8, 10
+
+const personObj = {
+    name: 'Krishnika',
+    age: 7
+}
+const student = {
+    id: 1,
+    gpa: 3.5
+}
+Object.setPrototypeOf(student, personObj);
+console.log(student.name); //Output is Krishnika
+
+let hero = {
+    powerLevel: 99,
+    getPower(){
+      return this.powerLevel;
+    }
+  }
+let getPower = hero.getPower;
+let hero2 = {powerLevel:42};
+  console.log(getPower());              // Output is undefinded
+  console.log(getPower.apply(hero2));   // Output is 42
+
+
+</script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Website</title>
+</head>
+<style>
+/* .hello-text {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.shadow-container {
+    text-align: center;
+    box-shadow: 10px 10px 10px 10px red;
+} */
+*{
+    margin: 5px;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    font-size: 24px;
+    font-family: sans-serif;
+    text-align: center;
+    flex-direction: column;
+    height: 95vh;
+}
+    header{
+        background-color: blue;
+        padding: 2em 0 2em 0px;
+    }
+    .mainpage{
+        display: flex;
+        flex: 1;
+    }
+    .left{
+        background-color: blue;
+        padding: 2em 0 2em 0px;
+        flex: 1 1 100px;
+    }
+    main{
+        background-color: blue;
+        padding: 3em 0 3em 0px;
+        flex: 5 5 150px;
+    }
+    .right{
+        background-color: blue;
+        padding: 2em 0 2em 0px;
+        flex: 1 1 100px;
+    }
+    footer{
+        background-color: blue;
+        padding: 2em 0 2em 0px;
+    }
+@media all and (max-width: 550px) {
+    .mainpage{
+        flex-direction: column;
+    }
+    mainpage{
+        padding: 3em 0 3em 0px;
+    }
+}
+</style>
+<body>
+<header>HTML Website</header>
+<div class="mainpage">
+    <aside class="left">Left</aside>
+    <main>Main Content</main>
+    <aside class="right">Right</aside>
+</div>
+<footer>Footer</footer>
+</body>
+</html>
